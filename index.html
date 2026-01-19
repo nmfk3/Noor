@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تزامن الهندسة - قصة علي ونور</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'El Messiri', sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #e74c3c, #f39c12);
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .dedication {
+            background-color: #f8f9fa;
+            padding: 30px;
+            margin: 30px;
+            border-radius: 15px;
+            border-right: 5px solid #3498db;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .chapter {
+            padding: 30px;
+            margin: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .chapter-title {
+            font-size: 1.9rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chapter-title i {
+            margin-left: 15px;
+            color: #e74c3c;
+        }
+        
+        .memory {
+            background-color: #f8fafc;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+            border-left: 5px solid #9b59b6;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .memory::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            background: rgba(155, 89, 182, 0.05);
+            border-radius: 0 0 0 60px;
+        }
+        
+        .memory-title {
+            font-size: 1.3rem;
+            color: #2980b9;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .memory-title i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .memory-content {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            color: #444;
+        }
+        
+        .highlight {
+            background-color: #fffacd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .quote {
+            background: linear-gradient(to right, #f8f9fa, #e3f2fd);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+            border-right: 5px solid #e74c3c;
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #2c3e50;
+            position: relative;
+        }
+        
+        .quote::before {
+            content: "❞";
+            font-size: 4rem;
+            color: rgba(231, 76, 60, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: serif;
+        }
+        
+        .characters {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .character-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 5px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+        
+        .character-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .character-card:nth-child(2) {
+            border-top-color: #9b59b6;
+        }
+        
+        .character-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .character-card:nth-child(2) .character-avatar {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+        
+        .character-name {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .character-desc {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .emotion {
+            font-size: 1.4rem;
+            margin: 0 3px;
+            vertical-align: middle;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background-color: #e74c3c;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3);
+        }
+        
+        .footer {
+            background: linear-gradient(to right, #2c3e50, #34495e);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .signature {
+            font-family: cursive;
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #f1c40f;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .final-note {
+            background-color: #fff9e6;
+            padding: 30px;
+            margin: 40px 30px;
+            border-radius: 15px;
+            border: 2px dashed #f39c12;
+            text-align: center;
+        }
+        
+        .heart {
+            color: #e74c3c;
+            font-size: 2rem;
+            animation: heartbeat 1.5s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .chapter, .dedication, .characters, .final-note {
+                margin: 20px 15px;
+                padding: 20px;
+            }
+            
+            .character-card {
+                min-width: 100%;
+            }
+        }
+        
+        .interactive-btn {
+            display: inline-block;
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            font-family: 'El Messiri', sans-serif;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        
+        .interactive-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>تـــزامـــن الهــنــدســة</h1>
+            <div class="subtitle">قصة علي ونور: من أوراق ضائعة إلى قلوب وجدت طريقها في أروقة الهندسة المدنية</div>
+        </div>
+        
+        <div class="dedication">
+            إلى "نور" التي أضفت معنى جديداً على كلمة هندسة،<br>
+            إلى التفاصيل الصغيرة التي حوّلت المحاضرات إلى حياة،<br>
+            إلى اللحظات التي كتبت نفسها في سجل الذاكرة قبل سجل المحاضرات.<br>
+            هذه رواية واقعية عن مشاعر صادقة، كتبها قلب رأى النور في عينين.
+        </div>
+        
+        <div class="characters">
+            <div class="character-card">
+                <div class="character-avatar">ع</div>
+                <div class="character-name">علي</div>
+                <div class="character-desc">طالب هندسة مدنية، يكتب مشاعره بين سطور المعادلات، يبحث عن الجمال في الخطوط والمنحنيات، وجد ضالته حيث لم يتوقع.</div>
+            </div>
+            
+            <div class="character-card">
+                <div class="character-avatar">ن</div>
+                <div class="character-name">نور</div>
+                <div class="character-desc">زميلة في قسم الهندسة المدنية، بنية حبابة، مودبة، أخلاقها عالية، مترابية وحلوة، تضيء القاعة بحضورها قبل أن تضيئها المصابيح.</div>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h2 class="chapter-title"><i class="fas fa-book-open"></i> الفصل الأول: البداية والورقة الضائعة</h2>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-calendar-alt"></i> اللقاء الأول <span class="date-badge">كورس أول</span></div>
+                <div class="memory-content">
+                    كنا مجرد زملاء في قسم <span class="highlight">الهندسة المدنية</span>. أنا "علي" وهي "نور". التقينا في المحاضرات، وتبادلنا التحيات العابرة. الحياة تسير بشكل روتيني، حتى حدثت <span class="highlight">الورقة الضائعة</span> التي غيرت كل شيء.
+                </div>
+            </div>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-laugh"></i> الموقف المضحك <span class="date-badge">يوم لن أنساه</span></div>
+                <div class="memory-content">
+                    كنت أجمع أوراق الطلبة، وبغير قصد <span class="highlight">ضاعت ورقة نور</span> بين الأوراق الكثيرة. عندما بلغتها بالأمر، لم تتردد! رجعت <span class="highlight">كتبت الورقة مرة أخرى وسلمتها لي</span>، ثم قالت لي بنبرة فيها دعابة: <span class="highlight">"مفروض انت تكتب بدالي لأنك انت الي مضيعها!"</span>.<br><br>
+                    ثم أومأت بإصبعها محذرة <span class="highlight">"باوعت عليه صفح!"</span> وانطلقت.<br><br>
+                    وكنت أنا <span class="highlight">صافن شرد</span> <span class="emotion">😂</span>، لا أعرف كيف أرد، ممتعضاً من نفسي لكن مبتسماً في داخلي من طرافة الموقف وشخصيتها القوية.
+                </div>
+            </div>
+            
+            <div class="quote">
+                "أحياناً تبدأ القصص الكبيرة بمواقف صغيرة.. بورقة ضائعة وكلمات مرحة تترك أثراً في القلب قبل أن تتركه في سجل الدرجات."
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h2 class="chapter-title"><i class="fas fa-comments"></i> الفصل الثاني: بداية المراسلة والتقارب</h2>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-envelope"></i> نهاية كورس أول <span class="date-badge">بداية التواصل</span></div>
+                <div class="memory-content">
+                    في نهاية كورس أول، بدأت <span class="highlight">مراسلة رسمية</span> بيننا. كانت محادثات بسيطة حول الدراسة، المواعيد، الأسئلة. لكنها كانت <span class="highlight">البوابة</span> التي من خلالها بدأنا نتعرف أكثر على بعضنا.
+                </div>
+            </div>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-graduation-cap"></i> كورس ثاني: التقارب الحقيقي <span class="date-badge">الشهر الثالث</span></div>
+                <div class="memory-content">
+                    في كورس ثاني، وتحديداً في <span class="highlight">الشهر الثالث</span>، بدأنا <span class="highlight">نتحدث بكثرة</span>. المحادثات تحولت من مجرد "متى الامتحان؟" إلى أحاديث أعمق. وبدأت <span class="highlight">أدرس لها بعض المواضيع</span> التي تجد صعوبة فيها.
+                </div>
+            </div>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-star"></i> النجاح والفرح المشترك <span class="date-badge">مرحلة أولى</span></div>
+                <div class="memory-content">
+                    استمررت <span class="highlight">أدرسها</span> حتى ساعدتها على <span class="highlight">تنجح من مرحلة أولى</span> ما عدا مادة واحدة حملتها. وكان فرحي بفرحها شيئاً غريباً. وكنا <span class="highlight">مستمرين نتراسل</span> بيننا حتى بلغنا <span class="highlight">العطلة الصيفية</span>.
+                </div>
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h2 class="chapter-title"><i class="fas fa-heart"></i> الفصل الثالث: الانجذاب والمشاعر المتزايدة</h2>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-sun"></i> العطلة الصيفية <span class="date-badge">تقوية العلاقة</span></div>
+                <div class="memory-content">
+                    خلال <span class="highlight">العطلة الصيفية</span>، <span class="highlight">قوت علاقتنا أكثر من قبل</span>. المحادثات أصبحت يومية تقريباً. وبدأت <span class="highlight">أنجذب إليها</span> بشكل واضح. لماذا؟ لأنها <span class="highlight">بنت حبابة ومودبة وأخلاق ومترابية وحلوة</span>. كل هذه الصفات جعلت قلبي <span class="highlight">يلجأ إليها</span>.
+                </div>
+            </div>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-flirt"></i> محاولات التقرب <span class="date-badge">مرحلة تعلق</span></div>
+                <div class="memory-content">
+                    بدأت <span class="highlight">أتحرش بيها</span> بلطف، أكتب لها <span class="highlight">"أكلله حياتي وعمري"</span> وهي ترد <span class="highlight">"ما تقبل"</span> <span class="emotion">😂</span>. كانت ترفض بلطف، لكن المحادثات تستمر. كانت لعبة حلوة، أعرف أنها تعرف مشاعري لكننا لم نعترف بعد.
+                </div>
+            </div>
+            
+            <div class="quote">
+                "الحب يبدأ عندما تبحث عن أعذار لتتحدث مع شخص ما، وتجد أن سعادتك مرتبطة بسعادته، وتبدأ ترى العالم من خلال عينيه."
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h2 class="chapter-title"><i class="fas fa-magic"></i> الفصل الرابع: التعلق واللحظة السحرية</h2>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-university"></i> مرحلة ثانية كورس أول <span class="date-badge">تعلق لا إرادي</span></div>
+                <div class="memory-content">
+                    في مرحلة ثانية كورس أول، <span class="highlight">بدأت أتعلق فيها أكثر</span> لدرجة أنني <span class="highlight">من ناخذ محاضرات ما أبوع ع المحاضرات</span> <span class="emotion">😂</span>، شكد ما أركز بيها! كنت أنظر إليها أكثر مما أنظر للسبورة، أفكر فيها أكثر مما أفكر في المعادلات.
+                </div>
+            </div>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-sun"></i> اليوم الذي لن أنساه <span class="date-badge">2026/1/8</span></div>
+                <div class="memory-content">
+                    في <span class="highlight">يوم 2026/1/8</span>، بعد <span class="highlight">امتحان الرياضيات</span>...<br><br>
+                    <span class="highlight">من كملت امتحان وطلعت، فشفتها واكفه كدام مبنى الهندسة</span>. كانت واقفة هناك، ومن <span class="highlight">باوعت عليها جان ضوء شمس بوجهها</span>.<br><br>
+                    <span class="highlight">وجهها جان يلمع شكد حلو يخبل فديتة</span> <span class="emotion">🫣🫣</span>.<br><br>
+                    <span class="highlight">ما أنسة المنظر الي شفته بوجهها شون حلو</span>. كانت لحظة سحرية، وكأن الكون كله توقف لأجل هذه الصورة. كانت <span class="highlight">نوراً حقيقياً</span>، ليس اسمها فقط.
+                </div>
+            </div>
+            
+            <div class="quote">
+                "هناك لحظات في الحياة لا تحتاج إلى كاميرا لالتقاطها، لأنها تنطبع في الذاكرة إلى الأبد. لحظة وقفت فيها الشمس لتضيء وجه من أحببت، فاكتشفت أن النور ليس في السماء فقط."
+            </div>
+        </div>
+        
+        <div class="chapter">
+            <h2 class="chapter-title"><i class="fas fa-mobile-alt"></i> الفصل الخامس: الرسالة التي أنارت القلب</h2>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-calendar-day"></i> يوم الترميم <span class="date-badge">2026/1/11</span></div>
+                <div class="memory-content">
+                    في <span class="highlight">يوم 2026/1/11</span>، <span class="highlight">رجعنا من فاينل فلود</span> (امتحان الترميم).<br><br>
+                    <span class="highlight">أنا نمت وهي هم نامت</span>، ولكن بعد ذلك <span class="highlight">راسلتها وما عدها نت</span>.<br><br>
+                    بعد فترة <span class="highlight">راسلتني كالت: "ما عندي نت، راسلتك علمود اطمنك عليه"</span>.<br><br>
+                    <span class="highlight">هنا أنا حيل فرحت!</span> فرحت من هذه <span class="highlight">الخطوة البسيطة</span> ولكنها عميقة. <span class="highlight">وأكفه بل برد بل حوش</span>، لكنها <span class="highlight">علمود دزلي رسالة وطمنت علي</span>.
+                </div>
+            </div>
+            
+            <div class="memory">
+                <div class="memory-title"><i class="fas fa-bullhorn"></i> القرار المصيري <span class="date-badge">المستقبل القريب</span></div>
+                <div class="memory-content">
+                    وفي <span class="highlight">هذا اليوم أيضاً</span>، قررت شيء مهم جداً:<br><br>
+                    <span class="highlight">"مقرر بعد كم يوم من هذا اليوم أعترف لها بحبي ومشاعري لها"</span>.<br><br>
+                    بعد كل هذه المشاهد، بعد كل هذه الذكريات، بعد كل هذه المشاعر التي تراكمت مثل طبقات في التربة، حان الوقت لأقول ما في قلبي. ليس لأنني أتوقع رداً محدداً، بل لأنني أريد أن أكون صادقاً معها ومع نفسي.
+                </div>
+            </div>
+            
+            <div class="quote">
+                "أعرف أن الاعتراف قد يغير كل شيء، أو قد لا يغير شيئاً. لكن بعض الكلمات يجب أن تقال، لأن حملها في القلب أثقل من خطر قولها."
+            </div>
+        </div>
+        
+        <div class="final-note">
+            <h2 style="color: #e74c3c; margin-bottom: 20px;"><span class="heart">❤</span> خاتمة وقرار <span class="heart">❤</span></h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                هذه القصة كتبت بلحظات حقيقية، بمشاعر صادقة، وبتفاصيل صغيرة صنعت قصة كبيرة في القلب.
+            </p>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                كل كلمة هنا جاءت من القلب، وكل ذكرى سُجلت لأنها تستحق أن تخلد.
+            </p>
+            <button class="interactive-btn" onclick="showMessage()">رسالة خاصة</button>
+        </div>
+        
+        <div class="footer">
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                كُتبت هذه الرواية في يناير 2026، قبل أيام قليلة من الاعتراف
+            </p>
+            <div class="signature">علي</div>
+            <p style="margin-top: 20px; opacity: 0.9;">طالب هندسة مدنية يكتب قصة قلب وجد نوره</p>
+        </div>
+    </div>
+
+    <script>
+        // تأثيرات تفاعلية بسيطة
+        document.addEventListener('DOMContentLoaded', function() {
+            // إضافة تأثير عند التمرير على الذكريات
+            const memories = document.querySelectorAll('.memory');
+            memories.forEach(memory => {
+                memory.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(10px)';
+                });
+                
+                memory.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+            
+            // تأثير لعناوين الفصول
+            const chapterTitles = document.querySelectorAll('.chapter-title');
+            chapterTitles.forEach(title => {
+                title.addEventListener('click', function() {
+                    this.style.color = this.style.color === 'rgb(231, 76, 60)' ? '#2c3e50' : '#e74c3c';
+                });
+            });
+            
+            // تعبئة الرموز التعبيرية
+            const emotions = document.querySelectorAll('.emotion');
+            emotions.forEach(emotion => {
+                if (emotion.textContent === '😂') {
+                    emotion.title = "ضحكة";
+                } else if (emotion.textContent === '🫣🫣') {
+                    emotion.title = "خجل وإعجاب";
+                }
+            });
+        });
+        
+        function showMessage() {
+            const messages = [
+                "أنت شجاع لأنك تكتب مشاعرك!",
+                "نور محظوظة بأن هناك من يراها بهذا الجمال",
+                "مهما كانت النتيجة، أنت كتبت قصة جميلة",
+                "التوفيق في اعترافك! ❤️",
+                "الصدق أجمل هدية يمكن أن تقدمها"
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+        }
+        
+        // تأثيرات إضافية
+        console.log("%cقصة حب في أروقة الهندسة 💝", "color: #e74c3c; font-size: 18px; font-weight: bold;");
+        console.log("%cبالتوفيق في اعترافك يا علي! 💌", "color: #3498db; font-size: 14px;");
+    </script>
+</body>
+</html>
